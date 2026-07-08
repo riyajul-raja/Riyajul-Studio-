@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riyajul Studio</title>
+
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { min-height: 100vh; display: flex; justify-content: center; align-items: center; background: #0f172a; color: #fff; overflow: hidden; position: relative; padding: 20px; }
+body::before, body::after { content: ''; position: absolute; border-radius: 50%; filter: blur(80px); z-index: -1; animation: float 8s infinite ease-in-out alternate; }
+body::before { width: 350px; height: 350px; background: rgba(37, 99, 235, 0.5); top: -50px; left: -100px; }
+body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); bottom: -50px; right: -50px; animation-delay: -4s; }
+@keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(30px) scale(1.1); } }
+.container { width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); border-radius: 25px; padding: 40px 30px; text-align: center; animation: slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+@keyframes slideUp { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
+.logo { font-size: 40px; color: #38bdf8; margin-bottom: 10px; }
+.title { font-size: 26px; margin-bottom: 5px; background: linear-gradient(135deg, #fff, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.subtitle { font-size: 14px; color: rgba(255, 255, 255, 0.6); margin-bottom: 25px; }
+.tab-box { display: flex; background: rgba(255, 255, 255, 0.05); border-radius: 12px; margin-bottom: 25px; position: relative; border: 1px solid rgba(255, 255, 255, 0.1); padding: 4px; }
+.tab-btn { flex: 1; padding: 10px; background: none; border: none; color: rgba(255, 255, 255, 0.6); font-size: 15px; font-weight: 600; cursor: pointer; position: relative; z-index: 2; transition: color 0.3s; }
+.tab-btn.active-text { color: #fff; }
+.tab-bg { position: absolute; top: 4px; left: 4px; width: calc(50% - 4px); height: calc(100% - 8px); background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 8px; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1; }
+.form-area { width: 100%; overflow: hidden; }
+.form-wrapper { display: flex; width: 200%; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+.form { width: 50%; padding: 0 2px; }
+.input-group { position: relative; margin-bottom: 15px; }
+.input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 20px; color: rgba(255, 255, 255, 0.5); transition: 0.3s; }
+.input-group input { width: 100%; padding: 14px 45px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-size: 15px; outline: none; transition: 0.3s; }
+.input-group input:focus { background: rgba(255, 255, 255, 0.12); border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.2); }
+.input-group input:focus + i { color: #38bdf8; }
+.input-group .toggle-password { left: auto; right: 15px; cursor: pointer; pointer-events: auto; }
+.input-group .toggle-password:hover { color: #38bdf8; }
+.input-error { border-color: #ef4444 !important; box-shadow: 0 0 10px rgba(239, 68, 68, 0.3) !important; }
+.error-msg { color: #ef4444; font-size: 13px; margin-bottom: 15px; text-align: left; display: none; padding-left: 5px; }
+.main-btn { width: 100%; padding: 14px; margin-top: 5px; background: linear-gradient(135deg, #2563eb, #06b6d4); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3); }
+.main-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(6, 182, 212, 0.5); }
+.divider { margin: 20px 0; display: flex; align-items: center; color: rgba(255, 255, 255, 0.4); font-size: 12px; }
+.divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: rgba(255, 255, 255, 0.1); }
+.divider::before { margin-right: 10px; } .divider::after { margin-left: 10px; }
+.social-login { display: flex; gap: 15px; }
+.social-btn { flex: 1; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: white; font-size: 20px; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: 0.3s; }
+.social-btn:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
+.social-btn.google:hover { border-color: #ea4335; color: #ea4335; }
+.social-btn.facebook:hover { border-color: #1877f2; color: #1877f2; }
+.links { margin-top: 15px; font-size: 13px; }
+.links a { color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: 0.3s; }
+.links a:hover { color: #38bdf8; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.bx-loader-alt { animation: spin 1s linear infinite; color: #38bdf8; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <i class='bx bxl-sketch logo'></i>
+    <h1 class="title">Riyajul Studio</h1>
+    <p class="subtitle">Your creative space awaits</p>
+
+    <div class="tab-box">
+        <div class="tab-bg" id="tab-bg"></div> 
+        <button class="tab-btn active-text" id="btn-login" onclick="window.switchTab('login')">Sign In</button>
+        <button class="tab-btn" id="btn-register" onclick="window.switchTab('register')">Sign Up</button>
+    </div>
+
+    <div class="form-area">
+        <div class="form-wrapper" id="form-wrapper">
+            
+            <!-- LOGIN FORM -->
+            <div class="form">
+                <div class="input-group">
+                    <input type="email" id="login-email" placeholder="Email Address">
+                    <i class='bx bx-user'></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="login-pass" placeholder="Password">
+                    <i class='bx bx-lock-alt'></i>
+                    <i class='bx bx-hide toggle-password' onclick="window.togglePassword('login-pass', this)"></i>
+                </div>
+                
+                <p class="error-msg" id="login-error">⚠️ Error here</p>
+                <button class="main-btn" onclick="window.processLogin()">Login</button>
+                <div class="links"><a href="#">Forgot Password?</a></div>
+                <div class="divider">OR CONTINUE WITH</div>
+                <div class="social-login">
+                    <button class="social-btn google" onclick="window.realGoogleLogin(this)"><i class='bx bxl-google'></i></button>
+                    <button class="social-btn facebook" onclick="window.fakeSocialAuth(this, 'Facebook')"><i class='bx bxl-facebook'></i></button>
+                    <button class="social-btn" onclick="window.fakeSocialAuth(this, 'Apple')"><i class='bx bxl-apple'></i></button>
+                </div>
+            </div>
+
+            <!-- REGISTER FORM -->
+            <div class="form">
+                <div class="input-group">
+                    <input type="text" id="reg-name" placeholder="Full Name">
+                    <i class='bx bx-id-card'></i>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="reg-email" placeholder="Email Address">
+                    <i class='bx bx-envelope'></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="reg-pass" placeholder="Create Password">
+                    <i class='bx bx-lock-open-alt'></i>
+                    <i class='bx bx-hide toggle-password' onclick="window.togglePassword('reg-pass', this)"></i>
+                </div>
+                
+                <p class="error-msg" id="reg-error">⚠️ Error here</p>
+                <button class="main-btn" onclick="window.processRegister()">Create Account</button>
+                <div class="divider">OR REGISTER WITH</div>
+                <div class="social-login">
+                    <button class="social-btn google" onclick="window.realGoogleLogin(this)"><i class='bx bxl-google'></i></button>
+                    <button class="social-btn facebook" onclick="window.fakeSocialAuth(this, 'Facebook')"><i class='bx bxl-facebook'></i></button>
+                    <button class="social-btn" onclick="window.fakeSocialAuth(this, 'Apple')"><i class='bx bxl-apple'></i></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- REAL FIREBASE SCRIPT WITH YOUR EXACT CONFIG -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  // Aapki ekdum exact API keys jo aapne bheji thi
+  const firebaseConfig = {
+    apiKey: "AIzaSyDOg7zZAh3W9P_rcgTAEFBEh1fe5vDb-oo",
+    authDomain: "riyajul-studio.firebaseapp.com",
+    projectId: "riyajul-studio",
+    storageBucket: "riyajul-studio.firebasestorage.app",
+    messagingSenderId: "96233401450",
+    appId: "1:96233401450:web:587ee8bc71585f91102e13",
+    measurementId: "G-5D479VYKBQ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const googleProvider = new GoogleAuthProvider();
+
+  getRedirectResult(auth).then((result) => {
+    if (result) {
+      const user = result.user;
+      let userData = { name: user.displayName, email: user.email, photo: user.photoURL };
+      localStorage.setItem("riyajul_user", JSON.stringify(userData));
+      window.location.href = 'home.html';
+    }
+  }).catch((error) => {
+    alert("Google Login Error: " + error.message);
+  });
+
+  window.realGoogleLogin = function(btn) {
+      btn.innerHTML = "<i class='bx bx-loader-alt'></i>"; 
+      signInWithRedirect(auth, googleProvider).catch((error) => {
+          alert("Google Security Blocked it! Error: " + error.message);
+          btn.innerHTML = "<i class='bx bxl-google'></i>"; 
+      });
+  };
+
+  // ----- UI Functions -----
+  window.switchTab = function(tab) {
+        const wrapper = document.getElementById('form-wrapper');
+        const tabBg = document.getElementById('tab-bg');
+        const btnLogin = document.getElementById('btn-login');
+        const btnRegister = document.getElementById('btn-register');
+
+        document.getElementById('login-error').style.display = 'none';
+        document.getElementById('reg-error').style.display = 'none';
+        document.querySelectorAll('input').forEach(i => i.classList.remove('input-error'));
+
+        if(tab === 'login') {
+            wrapper.style.transform = 'translateX(0%)';
+            tabBg.style.transform = 'translateX(0)';
+            btnLogin.classList.add('active-text');
+            btnRegister.classList.remove('active-text');
+        } else {
+            wrapper.style.transform = 'translateX(-50%)';
+            tabBg.style.transform = 'translateX(100%)';
+            btnRegister.classList.add('active-text');
+            btnLogin.classList.remove('active-text');
+        }
+  }
+
+  window.togglePassword = function(inputId, icon) {
+        let passwordInput = document.getElementById(inputId);
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("bx-hide");
+            icon.classList.add("bx-show");
+            icon.style.color = "#38bdf8";
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("bx-show");
+            icon.classList.add("bx-hide");
+            icon.style.color = "rgba(255, 255, 255, 0.5)";
+        }
+  }
+
+  window.processRegister = function() {
+        let name = document.getElementById('reg-name');
+        let email = document.getElementById('reg-email');
+        let pass = document.getElementById('reg-pass');
+        let errorMsg = document.getElementById('reg-error');
+
+        if(name.value === "" || email.value === "" || pass.value === "") {
+            errorMsg.innerText = "⚠️ Please fill all details.";
+            errorMsg.style.display = "block";
+            return;
+        }
+
+        let userData = { email: email.value, password: pass.value };
+        localStorage.setItem("riyajul_user", JSON.stringify(userData));
+        window.location.href = 'home.html';
+  }
+
+  window.processLogin = function() {
+        let email = document.getElementById('login-email');
+        let pass = document.getElementById('login-pass');
+        let errorMsg = document.getElementById('login-error');
+
+        if(email.value === "" || pass.value === "") {
+            errorMsg.innerText = "⚠️ Enter Email and Password.";
+            errorMsg.style.display = "block";
+            return;
+        }
+
+        let savedData = JSON.parse(localStorage.getItem("riyajul_user"));
+
+        if(!savedData || savedData.email !== email.value) {
+            window.switchTab('register');
+            document.getElementById('reg-email').value = email.value;
+            let regError = document.getElementById('reg-error');
+            regError.innerText = "⚠️ Account not found. Please Sign Up first!";
+            regError.style.display = "block";
+            return;
+        }
+
+        if(savedData.password !== pass.value) {
+            errorMsg.innerText = "❌ Incorrect Password.";
+            errorMsg.style.display = "block";
+            pass.classList.add('input-error');
+            return;
+        }
+
+        window.location.href = 'home.html';
+  }
+
+  window.fakeSocialAuth = function(btn, provider) {
+        btn.innerHTML = "<i class='bx bx-loader-alt'></i>";
+        setTimeout(() => {
+            let dummyData = { email: "user@" + provider.toLowerCase() + ".com", password: "social_login_pwd" };
+            localStorage.setItem("riyajul_user", JSON.stringify(dummyData));
+            window.location.href = 'home.html';
+        }, 1500);
+  }
+</script>
+
+</body>
+</html>
