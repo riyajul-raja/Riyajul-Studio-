@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Riyajul Studio</title>
+<title>Riyajul Studio - Premium Welcome</title>
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -14,11 +14,65 @@ body::before, body::after { content: ''; position: absolute; border-radius: 50%;
 body::before { width: 350px; height: 350px; background: rgba(37, 99, 235, 0.5); top: -50px; left: -100px; }
 body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); bottom: -50px; right: -50px; animation-delay: -4s; }
 @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(30px) scale(1.1); } }
-.container { width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); border-radius: 25px; padding: 40px 30px; text-align: center; animation: slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
+/* CONTAINER WITH SHINE EFFECT (Red circled area) */
+.container { 
+    width: 100%; 
+    max-width: 400px; 
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(16px); 
+    -webkit-backdrop-filter: blur(16px); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); 
+    border-radius: 25px; 
+    padding: 40px 30px; 
+    text-align: center; 
+    animation: slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+    position: relative; 
+    overflow: hidden; 
+}
+
+/* Box ke upar chamak (Har 4 second me smooth trike se) */
+.container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -150%;
+    width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    animation: shineBox 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 10;
+}
+@keyframes shineBox { 
+    0% { left: -150%; } 
+    30% { left: 200%; } /* Thoda time lekar smooth cross karega */
+    100% { left: 200%; } /* Baki time wait karega (4 sec cycle) */
+}
+
 @keyframes slideUp { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
-.logo { font-size: 40px; color: #38bdf8; margin-bottom: 10px; }
-.title { font-size: 26px; margin-bottom: 5px; background: linear-gradient(135deg, #fff, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* DIAMOND LOGO (Spin Band Kar Diya Hai) */
+.logo { font-size: 45px; color: #38bdf8; margin-bottom: 10px; display: inline-block; }
+
+/* TITLE SHINE (Har 4 second me smooth chamkega) */
+.title { 
+    font-size: 26px; 
+    margin-bottom: 5px; 
+    background: linear-gradient(90deg, #fff 0%, #fff 40%, #38bdf8 50%, #fff 60%, #fff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineText 4s ease-in-out infinite;
+}
+@keyframes shineText { 
+    0% { background-position: 150% center; } 
+    30% { background-position: -150% center; } /* Speed kam ki gayi hai */
+    100% { background-position: -150% center; } 
+}
+
 .subtitle { font-size: 14px; color: rgba(255, 255, 255, 0.6); margin-bottom: 25px; }
+
 .tab-box { display: flex; background: rgba(255, 255, 255, 0.05); border-radius: 12px; margin-bottom: 25px; position: relative; border: 1px solid rgba(255, 255, 255, 0.1); padding: 4px; }
 .tab-btn { flex: 1; padding: 10px; background: none; border: none; color: rgba(255, 255, 255, 0.6); font-size: 15px; font-weight: 600; cursor: pointer; position: relative; z-index: 2; transition: color 0.3s; }
 .tab-btn.active-text { color: #fff; }
@@ -35,17 +89,17 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 .input-group .toggle-password:hover { color: #38bdf8; }
 .input-error { border-color: #ef4444 !important; box-shadow: 0 0 10px rgba(239, 68, 68, 0.3) !important; }
 .error-msg { color: #ef4444; font-size: 13px; margin-bottom: 15px; text-align: left; display: none; padding-left: 5px; }
-.main-btn { width: 100%; padding: 14px; margin-top: 5px; background: linear-gradient(135deg, #2563eb, #06b6d4); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3); }
+.main-btn { width: 100%; padding: 14px; margin-top: 5px; background: linear-gradient(135deg, #2563eb, #06b6d4); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3); position: relative; z-index: 20; }
 .main-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(6, 182, 212, 0.5); }
 .divider { margin: 20px 0; display: flex; align-items: center; color: rgba(255, 255, 255, 0.4); font-size: 12px; }
 .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: rgba(255, 255, 255, 0.1); }
 .divider::before { margin-right: 10px; } .divider::after { margin-left: 10px; }
-.social-login { display: flex; gap: 15px; }
+.social-login { display: flex; gap: 15px; position: relative; z-index: 20; }
 .social-btn { flex: 1; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: white; font-size: 20px; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: 0.3s; }
 .social-btn:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
 .social-btn.google:hover { border-color: #ea4335; color: #ea4335; }
 .social-btn.facebook:hover { border-color: #1877f2; color: #1877f2; }
-.links { margin-top: 15px; font-size: 13px; }
+.links { margin-top: 15px; font-size: 13px; position: relative; z-index: 20; }
 .links a { color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: 0.3s; }
 .links a:hover { color: #38bdf8; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
@@ -87,8 +141,8 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
                 <div class="divider">OR CONTINUE WITH</div>
                 <div class="social-login">
                     <button class="social-btn google" onclick="window.realGoogleLogin(this)"><i class='bx bxl-google'></i></button>
-                    <button class="social-btn facebook" onclick="window.fakeSocialAuth(this, 'Facebook')"><i class='bx bxl-facebook'></i></button>
-                    <button class="social-btn" onclick="window.fakeSocialAuth(this, 'Apple')"><i class='bx bxl-apple'></i></button>
+                    <!-- FACEBOOK LOGIN BUTTON -->
+                    <button class="social-btn facebook" onclick="window.realFacebookLogin(this)"><i class='bx bxl-facebook'></i></button>
                 </div>
             </div>
 
@@ -113,8 +167,8 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
                 <div class="divider">OR REGISTER WITH</div>
                 <div class="social-login">
                     <button class="social-btn google" onclick="window.realGoogleLogin(this)"><i class='bx bxl-google'></i></button>
-                    <button class="social-btn facebook" onclick="window.fakeSocialAuth(this, 'Facebook')"><i class='bx bxl-facebook'></i></button>
-                    <button class="social-btn" onclick="window.fakeSocialAuth(this, 'Apple')"><i class='bx bxl-apple'></i></button>
+                    <!-- FACEBOOK LOGIN BUTTON -->
+                    <button class="social-btn facebook" onclick="window.realFacebookLogin(this)"><i class='bx bxl-facebook'></i></button>
                 </div>
             </div>
 
@@ -122,12 +176,11 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
     </div>
 </div>
 
-<!-- REAL FIREBASE SCRIPT WITH YOUR EXACT CONFIG -->
+<!-- REAL FIREBASE SCRIPT -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-  // Aapki ekdum exact API keys jo aapne bheji thi
   const firebaseConfig = {
     apiKey: "AIzaSyDOg7zZAh3W9P_rcgTAEFBEh1fe5vDb-oo",
     authDomain: "riyajul-studio.firebaseapp.com",
@@ -140,7 +193,9 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  
   const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
 
   getRedirectResult(auth).then((result) => {
     if (result) {
@@ -150,14 +205,22 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
       window.location.href = 'home.html';
     }
   }).catch((error) => {
-    alert("Google Login Error: " + error.message);
+    alert("Login Error: " + error.message);
   });
 
   window.realGoogleLogin = function(btn) {
       btn.innerHTML = "<i class='bx bx-loader-alt'></i>"; 
       signInWithRedirect(auth, googleProvider).catch((error) => {
-          alert("Google Security Blocked it! Error: " + error.message);
+          alert("Google Error: " + error.message);
           btn.innerHTML = "<i class='bx bxl-google'></i>"; 
+      });
+  };
+
+  window.realFacebookLogin = function(btn) {
+      btn.innerHTML = "<i class='bx bx-loader-alt'></i>"; 
+      signInWithRedirect(auth, facebookProvider).catch((error) => {
+          alert("Facebook Error: " + error.message);
+          btn.innerHTML = "<i class='bx bxl-facebook'></i>"; 
       });
   };
 
@@ -248,17 +311,6 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 
         window.location.href = 'home.html';
   }
-
-  // Facebook Login Function
-var facebookProvider = new firebase.auth.FacebookAuthProvider();
-
-function facebookLogin() {
-  firebase.auth().signInWithPopup(facebookProvider)
-  .then((result) => {
-    window.location.href = 'home.html';
-  })
-  .catch((error) => {
-    alert("Facebook Login Error: " + error.message);
-  });
-    }
-    
+</script>
+</body>
+</html>
