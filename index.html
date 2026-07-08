@@ -15,7 +15,7 @@ body::before { width: 350px; height: 350px; background: rgba(37, 99, 235, 0.5); 
 body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); bottom: -50px; right: -50px; animation-delay: -4s; }
 @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(30px) scale(1.1); } }
 
-/* CONTAINER WITH SHINE EFFECT (Red circled area) */
+/* CONTAINER WITH SHINE EFFECT */
 .container { 
     width: 100%; 
     max-width: 400px; 
@@ -31,8 +31,6 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
     position: relative; 
     overflow: hidden; 
 }
-
-/* Box ke upar chamak (Har 4 second me smooth trike se) */
 .container::after {
     content: '';
     position: absolute;
@@ -44,18 +42,13 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
     pointer-events: none;
     z-index: 10;
 }
-@keyframes shineBox { 
-    0% { left: -150%; } 
-    30% { left: 200%; } /* Thoda time lekar smooth cross karega */
-    100% { left: 200%; } /* Baki time wait karega (4 sec cycle) */
-}
-
+@keyframes shineBox { 0% { left: -150%; } 30% { left: 200%; } 100% { left: 200%; } }
 @keyframes slideUp { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
 
-/* DIAMOND LOGO (Spin Band Kar Diya Hai) */
+/* DIAMOND LOGO */
 .logo { font-size: 45px; color: #38bdf8; margin-bottom: 10px; display: inline-block; }
 
-/* TITLE SHINE (Har 4 second me smooth chamkega) */
+/* TITLE SHINE (Har 5 second me chamkega) */
 .title { 
     font-size: 26px; 
     margin-bottom: 5px; 
@@ -63,32 +56,42 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shineText 4s ease-in-out infinite;
+    animation: shineText 5s ease-in-out infinite;
 }
-@keyframes shineText { 
-    0% { background-position: 150% center; } 
-    30% { background-position: -150% center; } /* Speed kam ki gayi hai */
-    100% { background-position: -150% center; } 
-}
-
+@keyframes shineText { 0% { background-position: 150% center; } 20% { background-position: -150% center; } 100% { background-position: -150% center; } }
 .subtitle { font-size: 14px; color: rgba(255, 255, 255, 0.6); margin-bottom: 25px; }
 
+/* TABS */
 .tab-box { display: flex; background: rgba(255, 255, 255, 0.05); border-radius: 12px; margin-bottom: 25px; position: relative; border: 1px solid rgba(255, 255, 255, 0.1); padding: 4px; }
 .tab-btn { flex: 1; padding: 10px; background: none; border: none; color: rgba(255, 255, 255, 0.6); font-size: 15px; font-weight: 600; cursor: pointer; position: relative; z-index: 2; transition: color 0.3s; }
 .tab-btn.active-text { color: #fff; }
 .tab-bg { position: absolute; top: 4px; left: 4px; width: calc(50% - 4px); height: calc(100% - 8px); background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 8px; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1; }
+
+/* FORMS & INPUTS */
 .form-area { width: 100%; overflow: hidden; }
 .form-wrapper { display: flex; width: 200%; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 .form { width: 50%; padding: 0 2px; }
-.input-group { position: relative; margin-bottom: 15px; }
+.input-group { position: relative; margin-bottom: 15px; display: flex; }
 .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 20px; color: rgba(255, 255, 255, 0.5); transition: 0.3s; }
 .input-group input { width: 100%; padding: 14px 45px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-size: 15px; outline: none; transition: 0.3s; }
 .input-group input:focus { background: rgba(255, 255, 255, 0.12); border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.2); }
 .input-group input:focus + i { color: #38bdf8; }
+
+/* OTP CSS */
+.otp-btn { background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; border-radius: 12px; padding: 0 15px; cursor: pointer; transition: 0.3s; font-weight: 600; outline: none; margin-left: 10px; white-space: nowrap; }
+.otp-btn:hover { background: rgba(56, 189, 248, 0.3); }
+.otp-btn:disabled { color: rgba(255,255,255,0.4); border-color: rgba(255,255,255,0.2); cursor: not-allowed; background: transparent; }
+.timer-text { font-size: 12px; color: #38bdf8; text-align: right; margin-top: -10px; margin-bottom: 12px; display: none; }
+
+/* PASSWORDS & ERRORS */
 .input-group .toggle-password { left: auto; right: 15px; cursor: pointer; pointer-events: auto; }
 .input-group .toggle-password:hover { color: #38bdf8; }
 .input-error { border-color: #ef4444 !important; box-shadow: 0 0 10px rgba(239, 68, 68, 0.3) !important; }
-.error-msg { color: #ef4444; font-size: 13px; margin-bottom: 15px; text-align: left; display: none; padding-left: 5px; }
+.input-success { border-color: #22c55e !important; box-shadow: 0 0 12px rgba(34, 197, 94, 0.4) !important; }
+.error-msg { color: #ef4444; font-size: 13px; margin-bottom: 15px; text-align: left; display: none; padding-left: 5px; font-weight: 600; }
+.success-msg { color: #22c55e !important; }
+
+/* BUTTONS & SOCIALS */
 .main-btn { width: 100%; padding: 14px; margin-top: 5px; background: linear-gradient(135deg, #2563eb, #06b6d4); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3); position: relative; z-index: 20; }
 .main-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(6, 182, 212, 0.5); }
 .divider { margin: 20px 0; display: flex; align-items: center; color: rgba(255, 255, 255, 0.4); font-size: 12px; }
@@ -102,12 +105,13 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 .links { margin-top: 15px; font-size: 13px; position: relative; z-index: 20; }
 .links a { color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: 0.3s; }
 .links a:hover { color: #38bdf8; }
-@keyframes spin { 100% { transform: rotate(360deg); } }
-.bx-loader-alt { animation: spin 1s linear infinite; color: #38bdf8; }
 </style>
 </head>
 
 <body>
+
+<!-- Recaptcha Container for Firebase Phone Auth -->
+<div id="recaptcha-container"></div>
 
 <div class="container">
     <i class='bx bxl-sketch logo'></i>
@@ -126,9 +130,18 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
             <!-- LOGIN FORM -->
             <div class="form">
                 <div class="input-group">
-                    <input type="email" id="login-email" placeholder="Email Address">
+                    <input type="text" id="login-email" placeholder="Email or Mobile">
                     <i class='bx bx-user'></i>
                 </div>
+                
+                <!-- OTP Section -->
+                <div class="input-group">
+                    <input type="number" id="login-otp" placeholder="Enter OTP">
+                    <i class='bx bx-message-square-dots'></i>
+                    <button class="otp-btn" id="login-otp-btn" onclick="window.sendRealOTP('login')">Send OTP</button>
+                </div>
+                <div class="timer-text" id="login-timer">Resend in 30s</div>
+
                 <div class="input-group">
                     <input type="password" id="login-pass" placeholder="Password">
                     <i class='bx bx-lock-alt'></i>
@@ -136,12 +149,11 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
                 </div>
                 
                 <p class="error-msg" id="login-error">⚠️ Error here</p>
-                <button class="main-btn" onclick="window.processLogin()">Login</button>
+                <button class="main-btn" onclick="window.processRealLogin()">Login</button>
                 <div class="links"><a href="#">Forgot Password?</a></div>
                 <div class="divider">OR CONTINUE WITH</div>
                 <div class="social-login">
                     <button class="social-btn google" onclick="window.realGoogleLogin(this)"><i class='bx bxl-google'></i></button>
-                    <!-- FACEBOOK LOGIN BUTTON -->
                     <button class="social-btn facebook" onclick="window.realFacebookLogin(this)"><i class='bx bxl-facebook'></i></button>
                 </div>
             </div>
@@ -153,9 +165,18 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
                     <i class='bx bx-id-card'></i>
                 </div>
                 <div class="input-group">
-                    <input type="email" id="reg-email" placeholder="Email Address">
-                    <i class='bx bx-envelope'></i>
+                    <input type="text" id="reg-email" placeholder="Mobile Number">
+                    <i class='bx bx-phone'></i>
                 </div>
+                
+                <!-- OTP Section -->
+                <div class="input-group">
+                    <input type="number" id="reg-otp" placeholder="Enter OTP">
+                    <i class='bx bx-message-square-dots'></i>
+                    <button class="otp-btn" id="reg-otp-btn" onclick="window.sendRealOTP('register')">Send OTP</button>
+                </div>
+                <div class="timer-text" id="reg-timer">Resend in 30s</div>
+
                 <div class="input-group">
                     <input type="password" id="reg-pass" placeholder="Create Password">
                     <i class='bx bx-lock-open-alt'></i>
@@ -163,11 +184,10 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
                 </div>
                 
                 <p class="error-msg" id="reg-error">⚠️ Error here</p>
-                <button class="main-btn" onclick="window.processRegister()">Create Account</button>
+                <button class="main-btn" onclick="window.processRealRegister()">Create Account</button>
                 <div class="divider">OR REGISTER WITH</div>
                 <div class="social-login">
                     <button class="social-btn google" onclick="window.realGoogleLogin(this)"><i class='bx bxl-google'></i></button>
-                    <!-- FACEBOOK LOGIN BUTTON -->
                     <button class="social-btn facebook" onclick="window.realFacebookLogin(this)"><i class='bx bxl-facebook'></i></button>
                 </div>
             </div>
@@ -178,8 +198,9 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 
 <!-- REAL FIREBASE SCRIPT -->
 <script type="module">
+  // Import Phone Auth features
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider, FacebookAuthProvider, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDOg7zZAh3W9P_rcgTAEFBEh1fe5vDb-oo",
@@ -197,44 +218,166 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
 
+  // Social Logins
   getRedirectResult(auth).then((result) => {
     if (result) {
-      const user = result.user;
-      let userData = { name: user.displayName, email: user.email, photo: user.photoURL };
-      localStorage.setItem("riyajul_user", JSON.stringify(userData));
       window.location.href = 'home.html';
     }
   }).catch((error) => {
-    alert("Login Error: " + error.message);
+    console.error("Login Error: ", error);
   });
 
   window.realGoogleLogin = function(btn) {
-      btn.innerHTML = "<i class='bx bx-loader-alt'></i>"; 
-      signInWithRedirect(auth, googleProvider).catch((error) => {
-          alert("Google Error: " + error.message);
-          btn.innerHTML = "<i class='bx bxl-google'></i>"; 
-      });
+      signInWithRedirect(auth, googleProvider);
   };
 
   window.realFacebookLogin = function(btn) {
-      btn.innerHTML = "<i class='bx bx-loader-alt'></i>"; 
-      signInWithRedirect(auth, facebookProvider).catch((error) => {
-          alert("Facebook Error: " + error.message);
-          btn.innerHTML = "<i class='bx bxl-facebook'></i>"; 
-      });
+      signInWithRedirect(auth, facebookProvider);
   };
 
-  // ----- UI Functions -----
+  // Setup Invisible Recaptcha for Phone Auth
+  window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+    'size': 'invisible',
+    'callback': (response) => {
+      // reCAPTCHA solved
+    }
+  });
+
+  // --- REAL OTP LOGIC ---
+  window.sendRealOTP = function(type) {
+      let inputId = type === 'login' ? 'login-email' : 'reg-email';
+      let btnId = type === 'login' ? 'login-otp-btn' : 'reg-otp-btn';
+      let timerId = type === 'login' ? 'login-timer' : 'reg-timer';
+      let errorMsgId = type === 'login' ? 'login-error' : 'reg-error';
+      
+      let phoneNumber = document.getElementById(inputId).value;
+      let errorMsg = document.getElementById(errorMsgId);
+      
+      if (phoneNumber === "") {
+          errorMsg.innerText = "⚠️ Please enter Mobile Number first!";
+          errorMsg.style.display = "block";
+          return;
+      }
+
+      // Check for +91, add if missing (Assuming Indian Number)
+      if (!phoneNumber.startsWith('+')) {
+          phoneNumber = '+91' + phoneNumber;
+      }
+
+      let btn = document.getElementById(btnId);
+      btn.innerText = "Sending...";
+      btn.disabled = true;
+
+      const appVerifier = window.recaptchaVerifier;
+
+      signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+          .then((confirmationResult) => {
+              // SMS Sent!
+              window.confirmationResult = confirmationResult;
+              alert("✅ Real OTP sent via Firebase to: " + phoneNumber);
+              
+              // Timer Start
+              let timerDisplay = document.getElementById(timerId);
+              let timeLeft = 30;
+              timerDisplay.style.display = "block";
+              timerDisplay.innerText = "Resend in " + timeLeft + "s";
+
+              let countdown = setInterval(() => {
+                  timeLeft--;
+                  timerDisplay.innerText = "Resend in " + timeLeft + "s";
+                  if (timeLeft <= 0) {
+                      clearInterval(countdown);
+                      btn.disabled = false;
+                      btn.innerText = "Resend";
+                      timerDisplay.style.display = "none";
+                  }
+              }, 1000);
+          }).catch((error) => {
+              btn.innerText = "Send OTP";
+              btn.disabled = false;
+              errorMsg.innerText = "❌ OTP Error: " + error.message;
+              errorMsg.style.display = "block";
+          });
+  }
+
+  // --- REAL LOGIN WITH OTP ---
+  window.processRealLogin = function() {
+        let otp = document.getElementById('login-otp').value;
+        let pass = document.getElementById('login-pass');
+        let errorMsg = document.getElementById('login-error');
+
+        pass.classList.remove('input-error', 'input-success');
+
+        if(otp === "") {
+            errorMsg.innerText = "⚠️ Please enter the OTP received on SMS.";
+            errorMsg.style.display = "block";
+            return;
+        }
+
+        if(!window.confirmationResult) {
+            errorMsg.innerText = "⚠️ Please send OTP first.";
+            errorMsg.style.display = "block";
+            return;
+        }
+
+        // Verify Firebase OTP
+        window.confirmationResult.confirm(otp).then((result) => {
+            // User signed in successfully.
+            pass.classList.add('input-success');
+            errorMsg.innerText = "✅ Phone Verified & Logged In!";
+            errorMsg.classList.add('success-msg');
+            errorMsg.style.display = "block";
+            
+            setTimeout(() => { window.location.href = 'home.html'; }, 1000);
+        }).catch((error) => {
+            // Bad OTP
+            errorMsg.innerText = "❌ Incorrect OTP.";
+            errorMsg.style.display = "block";
+            document.getElementById('login-otp').classList.add('input-error');
+        });
+  }
+
+  window.processRealRegister = function() {
+        let otp = document.getElementById('reg-otp').value;
+        let pass = document.getElementById('reg-pass');
+        let errorMsg = document.getElementById('reg-error');
+
+        pass.classList.remove('input-error', 'input-success');
+
+        if(otp === "") {
+            errorMsg.innerText = "⚠️ Please enter the OTP received on SMS.";
+            errorMsg.style.display = "block";
+            return;
+        }
+
+        if(!window.confirmationResult) {
+            errorMsg.innerText = "⚠️ Please send OTP first.";
+            errorMsg.style.display = "block";
+            return;
+        }
+
+        window.confirmationResult.confirm(otp).then((result) => {
+            pass.classList.add('input-success');
+            errorMsg.innerText = "✅ Phone Verified & Account Created!";
+            errorMsg.classList.add('success-msg');
+            errorMsg.style.display = "block";
+            setTimeout(() => { window.location.href = 'home.html'; }, 1000);
+        }).catch((error) => {
+            errorMsg.innerText = "❌ Incorrect OTP.";
+            errorMsg.style.display = "block";
+            document.getElementById('reg-otp').classList.add('input-error');
+        });
+  }
+
+  // UI Functions
   window.switchTab = function(tab) {
         const wrapper = document.getElementById('form-wrapper');
         const tabBg = document.getElementById('tab-bg');
         const btnLogin = document.getElementById('btn-login');
         const btnRegister = document.getElementById('btn-register');
-
         document.getElementById('login-error').style.display = 'none';
         document.getElementById('reg-error').style.display = 'none';
-        document.querySelectorAll('input').forEach(i => i.classList.remove('input-error'));
-
+        
         if(tab === 'login') {
             wrapper.style.transform = 'translateX(0%)';
             tabBg.style.transform = 'translateX(0)';
@@ -262,55 +405,7 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
             icon.style.color = "rgba(255, 255, 255, 0.5)";
         }
   }
-
-  window.processRegister = function() {
-        let name = document.getElementById('reg-name');
-        let email = document.getElementById('reg-email');
-        let pass = document.getElementById('reg-pass');
-        let errorMsg = document.getElementById('reg-error');
-
-        if(name.value === "" || email.value === "" || pass.value === "") {
-            errorMsg.innerText = "⚠️ Please fill all details.";
-            errorMsg.style.display = "block";
-            return;
-        }
-
-        let userData = { email: email.value, password: pass.value };
-        localStorage.setItem("riyajul_user", JSON.stringify(userData));
-        window.location.href = 'home.html';
-  }
-
-  window.processLogin = function() {
-        let email = document.getElementById('login-email');
-        let pass = document.getElementById('login-pass');
-        let errorMsg = document.getElementById('login-error');
-
-        if(email.value === "" || pass.value === "") {
-            errorMsg.innerText = "⚠️ Enter Email and Password.";
-            errorMsg.style.display = "block";
-            return;
-        }
-
-        let savedData = JSON.parse(localStorage.getItem("riyajul_user"));
-
-        if(!savedData || savedData.email !== email.value) {
-            window.switchTab('register');
-            document.getElementById('reg-email').value = email.value;
-            let regError = document.getElementById('reg-error');
-            regError.innerText = "⚠️ Account not found. Please Sign Up first!";
-            regError.style.display = "block";
-            return;
-        }
-
-        if(savedData.password !== pass.value) {
-            errorMsg.innerText = "❌ Incorrect Password.";
-            errorMsg.style.display = "block";
-            pass.classList.add('input-error');
-            return;
-        }
-
-        window.location.href = 'home.html';
-  }
 </script>
+
 </body>
 </html>
