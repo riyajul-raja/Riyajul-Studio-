@@ -15,7 +15,6 @@ body::before { width: 350px; height: 350px; background: rgba(37, 99, 235, 0.5); 
 body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); bottom: -50px; right: -50px; animation-delay: -4s; }
 @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(30px) scale(1.1); } }
 
-/* CONTAINER WITH SHINE EFFECT */
 .container { 
     width: 100%; 
     max-width: 400px; 
@@ -45,10 +44,8 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 @keyframes shineBox { 0% { left: -150%; } 30% { left: 200%; } 100% { left: 200%; } }
 @keyframes slideUp { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
 
-/* DIAMOND LOGO */
 .logo { font-size: 45px; color: #38bdf8; margin-bottom: 10px; display: inline-block; }
 
-/* TITLE SHINE (Har 5 second me chamkega) */
 .title { 
     font-size: 26px; 
     margin-bottom: 5px; 
@@ -61,13 +58,11 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 @keyframes shineText { 0% { background-position: 150% center; } 20% { background-position: -150% center; } 100% { background-position: -150% center; } }
 .subtitle { font-size: 14px; color: rgba(255, 255, 255, 0.6); margin-bottom: 25px; }
 
-/* TABS */
 .tab-box { display: flex; background: rgba(255, 255, 255, 0.05); border-radius: 12px; margin-bottom: 25px; position: relative; border: 1px solid rgba(255, 255, 255, 0.1); padding: 4px; }
 .tab-btn { flex: 1; padding: 10px; background: none; border: none; color: rgba(255, 255, 255, 0.6); font-size: 15px; font-weight: 600; cursor: pointer; position: relative; z-index: 2; transition: color 0.3s; }
 .tab-btn.active-text { color: #fff; }
 .tab-bg { position: absolute; top: 4px; left: 4px; width: calc(50% - 4px); height: calc(100% - 8px); background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 8px; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1; }
 
-/* FORMS & INPUTS */
 .form-area { width: 100%; overflow: hidden; }
 .form-wrapper { display: flex; width: 200%; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 .form { width: 50%; padding: 0 2px; }
@@ -77,23 +72,17 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 .input-group input:focus { background: rgba(255, 255, 255, 0.12); border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.2); }
 .input-group input:focus + i { color: #38bdf8; }
 
-/* OTP CSS */
-.otp-btn { background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; border-radius: 12px; padding: 0 15px; cursor: pointer; transition: 0.3s; font-weight: 600; outline: none; margin-left: 10px; white-space: nowrap; }
-.otp-btn:hover { background: rgba(56, 189, 248, 0.3); }
-.otp-btn:disabled { color: rgba(255,255,255,0.4); border-color: rgba(255,255,255,0.2); cursor: not-allowed; background: transparent; }
-.timer-text { font-size: 12px; color: #38bdf8; text-align: right; margin-top: -10px; margin-bottom: 12px; display: none; }
-
-/* PASSWORDS & ERRORS */
-.input-group .toggle-password { left: auto; right: 15px; cursor: pointer; pointer-events: auto; }
+.input-group .toggle-password { position: absolute; top: 50%; left: auto; right: 15px; transform: translateY(-50%); cursor: pointer; pointer-events: auto; display: flex; align-items: center; color: rgba(255, 255, 255, 0.5); }
 .input-group .toggle-password:hover { color: #38bdf8; }
+.input-group .toggle-password svg { display: block; }
 .input-error { border-color: #ef4444 !important; box-shadow: 0 0 10px rgba(239, 68, 68, 0.3) !important; }
 .input-success { border-color: #22c55e !important; box-shadow: 0 0 12px rgba(34, 197, 94, 0.4) !important; }
 .error-msg { color: #ef4444; font-size: 13px; margin-bottom: 15px; text-align: left; display: none; padding-left: 5px; font-weight: 600; }
 .success-msg { color: #22c55e !important; }
 
-/* BUTTONS & SOCIALS */
 .main-btn { width: 100%; padding: 14px; margin-top: 5px; background: linear-gradient(135deg, #2563eb, #06b6d4); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3); position: relative; z-index: 20; }
 .main-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(6, 182, 212, 0.5); }
+.main-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 .divider { margin: 20px 0; display: flex; align-items: center; color: rgba(255, 255, 255, 0.4); font-size: 12px; }
 .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: rgba(255, 255, 255, 0.1); }
 .divider::before { margin-right: 10px; } .divider::after { margin-left: 10px; }
@@ -109,9 +98,6 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 </head>
 
 <body>
-
-<!-- Recaptcha Container for Firebase Phone Auth -->
-<div id="recaptcha-container"></div>
 
 <div class="container">
     <i class='bx bxl-sketch logo'></i>
@@ -130,27 +116,22 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
             <!-- LOGIN FORM -->
             <div class="form">
                 <div class="input-group">
-                    <input type="text" id="login-email" placeholder="Email or Mobile">
+                    <input type="email" id="login-email" placeholder="Email">
                     <i class='bx bx-user'></i>
                 </div>
-                
-                <!-- OTP Section -->
-                <div class="input-group">
-                    <input type="number" id="login-otp" placeholder="Enter OTP">
-                    <i class='bx bx-message-square-dots'></i>
-                    <button class="otp-btn" id="login-otp-btn" onclick="window.sendRealOTP('login')">Send OTP</button>
-                </div>
-                <div class="timer-text" id="login-timer">Resend in 30s</div>
 
                 <div class="input-group">
                     <input type="password" id="login-pass" placeholder="Password">
                     <i class='bx bx-lock-alt'></i>
-                    <i class='bx bx-hide toggle-password' onclick="window.togglePassword('login-pass', this)"></i>
+                    <span class="toggle-password" onclick="window.togglePassword('login-pass', this)" role="button" aria-label="Show password">
+                        <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a18.4 18.4 0 0 1 5.06-5.94M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    </span>
                 </div>
                 
                 <p class="error-msg" id="login-error">⚠️ Error here</p>
-                <button class="main-btn" onclick="window.processRealLogin()">Login</button>
-                <div class="links"><a href="#">Forgot Password?</a></div>
+                <button class="main-btn" id="login-btn" onclick="window.processRealLogin()">Login</button>
+                <div class="links"><a href="#" onclick="window.resetPassword()">Forgot Password?</a></div>
                 <div class="divider">OR CONTINUE WITH</div>
                 <div class="social-login">
                     <button class="social-btn google" onclick="window.realGoogleLogin(this)"><i class='bx bxl-google'></i></button>
@@ -165,26 +146,21 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
                     <i class='bx bx-id-card'></i>
                 </div>
                 <div class="input-group">
-                    <input type="text" id="reg-email" placeholder="Mobile Number">
-                    <i class='bx bx-phone'></i>
+                    <input type="email" id="reg-email" placeholder="Email">
+                    <i class='bx bx-envelope'></i>
                 </div>
-                
-                <!-- OTP Section -->
-                <div class="input-group">
-                    <input type="number" id="reg-otp" placeholder="Enter OTP">
-                    <i class='bx bx-message-square-dots'></i>
-                    <button class="otp-btn" id="reg-otp-btn" onclick="window.sendRealOTP('register')">Send OTP</button>
-                </div>
-                <div class="timer-text" id="reg-timer">Resend in 30s</div>
 
                 <div class="input-group">
                     <input type="password" id="reg-pass" placeholder="Create Password">
                     <i class='bx bx-lock-open-alt'></i>
-                    <i class='bx bx-hide toggle-password' onclick="window.togglePassword('reg-pass', this)"></i>
+                    <span class="toggle-password" onclick="window.togglePassword('reg-pass', this)" role="button" aria-label="Show password">
+                        <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a18.4 18.4 0 0 1 5.06-5.94M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    </span>
                 </div>
                 
                 <p class="error-msg" id="reg-error">⚠️ Error here</p>
-                <button class="main-btn" onclick="window.processRealRegister()">Create Account</button>
+                <button class="main-btn" id="reg-btn" onclick="window.processRealRegister()">Create Account</button>
                 <div class="divider">OR REGISTER WITH</div>
                 <div class="social-login">
                     <button class="social-btn google" onclick="window.realGoogleLogin(this)"><i class='bx bxl-google'></i></button>
@@ -198,9 +174,18 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 
 <!-- REAL FIREBASE SCRIPT -->
 <script type="module">
-  // Import Phone Auth features
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider, FacebookAuthProvider, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import {
+    getAuth,
+    signInWithRedirect,
+    getRedirectResult,
+    GoogleAuthProvider,
+    FacebookAuthProvider,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    updateProfile,
+    sendPasswordResetEmail
+  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDOg7zZAh3W9P_rcgTAEFBEh1fe5vDb-oo",
@@ -235,138 +220,98 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
       signInWithRedirect(auth, facebookProvider);
   };
 
-  // Setup Invisible Recaptcha for Phone Auth
-  window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-    'size': 'invisible',
-    'callback': (response) => {
-      // reCAPTCHA solved
-    }
-  });
+  function showError(elId, msg) {
+      let el = document.getElementById(elId);
+      el.classList.remove('success-msg');
+      el.innerText = "⚠️ " + msg;
+      el.style.display = "block";
+  }
 
-  // --- REAL OTP LOGIC ---
-  window.sendRealOTP = function(type) {
-      let inputId = type === 'login' ? 'login-email' : 'reg-email';
-      let btnId = type === 'login' ? 'login-otp-btn' : 'reg-otp-btn';
-      let timerId = type === 'login' ? 'login-timer' : 'reg-timer';
-      let errorMsgId = type === 'login' ? 'login-error' : 'reg-error';
-      
-      let phoneNumber = document.getElementById(inputId).value;
-      let errorMsg = document.getElementById(errorMsgId);
-      
-      if (phoneNumber === "") {
-          errorMsg.innerText = "⚠️ Please enter Mobile Number first!";
-          errorMsg.style.display = "block";
-          return;
-      }
+  function showSuccess(elId, msg) {
+      let el = document.getElementById(elId);
+      el.classList.add('success-msg');
+      el.innerText = "✅ " + msg;
+      el.style.display = "block";
+  }
 
-      // Check for +91, add if missing (Assuming Indian Number)
-      if (!phoneNumber.startsWith('+')) {
-          phoneNumber = '+91' + phoneNumber;
-      }
+  // --- REAL LOGIN (Email + Password) ---
+  window.processRealLogin = function() {
+        let email = document.getElementById('login-email').value.trim();
+        let pass = document.getElementById('login-pass').value;
+        let btn = document.getElementById('login-btn');
 
-      let btn = document.getElementById(btnId);
-      btn.innerText = "Sending...";
-      btn.disabled = true;
+        document.getElementById('login-error').style.display = 'none';
 
-      const appVerifier = window.recaptchaVerifier;
+        if (email === "" || pass === "") {
+            showError('login-error', 'Email aur Password dono bharo.');
+            return;
+        }
 
-      signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-          .then((confirmationResult) => {
-              // SMS Sent!
-              window.confirmationResult = confirmationResult;
-              alert("✅ Real OTP sent via Firebase to: " + phoneNumber);
-              
-              // Timer Start
-              let timerDisplay = document.getElementById(timerId);
-              let timeLeft = 30;
-              timerDisplay.style.display = "block";
-              timerDisplay.innerText = "Resend in " + timeLeft + "s";
+        btn.disabled = true;
+        btn.innerText = "Signing in...";
 
-              let countdown = setInterval(() => {
-                  timeLeft--;
-                  timerDisplay.innerText = "Resend in " + timeLeft + "s";
-                  if (timeLeft <= 0) {
-                      clearInterval(countdown);
-                      btn.disabled = false;
-                      btn.innerText = "Resend";
-                      timerDisplay.style.display = "none";
-                  }
-              }, 1000);
-          }).catch((error) => {
-              btn.innerText = "Send OTP";
+        signInWithEmailAndPassword(auth, email, pass)
+          .then((userCredential) => {
+              showSuccess('login-error', 'Logged In!');
+              setTimeout(() => { window.location.href = 'home.html'; }, 800);
+          })
+          .catch((error) => {
               btn.disabled = false;
-              errorMsg.innerText = "❌ OTP Error: " + error.message;
-              errorMsg.style.display = "block";
+              btn.innerText = "Login";
+
+              if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                  showError('login-error', 'Email ya password galat hai. Password bhool gaye ho to "Forgot Password" try karo, ya agar account nahi bana hai to Sign Up pe jao.');
+              } else {
+                  showError('login-error', error.message);
+              }
           });
   }
 
-  // --- REAL LOGIN WITH OTP ---
-  window.processRealLogin = function() {
-        let otp = document.getElementById('login-otp').value;
-        let pass = document.getElementById('login-pass');
-        let errorMsg = document.getElementById('login-error');
+  // --- REAL REGISTER (Email + Password) ---
+  window.processRealRegister = function() {
+        let name = document.getElementById('reg-name').value.trim();
+        let email = document.getElementById('reg-email').value.trim();
+        let pass = document.getElementById('reg-pass').value;
+        let btn = document.getElementById('reg-btn');
 
-        pass.classList.remove('input-error', 'input-success');
+        document.getElementById('reg-error').style.display = 'none';
 
-        if(otp === "") {
-            errorMsg.innerText = "⚠️ Please enter the OTP received on SMS.";
-            errorMsg.style.display = "block";
+        if (name === "" || email === "" || pass === "") {
+            showError('reg-error', 'Sabhi fields bharo.');
+            return;
+        }
+        if (pass.length < 6) {
+            showError('reg-error', 'Password kam se kam 6 characters ka hona chahiye.');
             return;
         }
 
-        if(!window.confirmationResult) {
-            errorMsg.innerText = "⚠️ Please send OTP first.";
-            errorMsg.style.display = "block";
-            return;
-        }
+        btn.disabled = true;
+        btn.innerText = "Creating...";
 
-        // Verify Firebase OTP
-        window.confirmationResult.confirm(otp).then((result) => {
-            // User signed in successfully.
-            pass.classList.add('input-success');
-            errorMsg.innerText = "✅ Phone Verified & Logged In!";
-            errorMsg.classList.add('success-msg');
-            errorMsg.style.display = "block";
-            
-            setTimeout(() => { window.location.href = 'home.html'; }, 1000);
-        }).catch((error) => {
-            // Bad OTP
-            errorMsg.innerText = "❌ Incorrect OTP.";
-            errorMsg.style.display = "block";
-            document.getElementById('login-otp').classList.add('input-error');
-        });
+        createUserWithEmailAndPassword(auth, email, pass)
+          .then((userCredential) => {
+              return updateProfile(userCredential.user, { displayName: name });
+          })
+          .then(() => {
+              showSuccess('reg-error', 'Account Created!');
+              setTimeout(() => { window.location.href = 'home.html'; }, 800);
+          })
+          .catch((error) => {
+              btn.disabled = false;
+              btn.innerText = "Create Account";
+              showError('reg-error', error.message);
+          });
   }
 
-  window.processRealRegister = function() {
-        let otp = document.getElementById('reg-otp').value;
-        let pass = document.getElementById('reg-pass');
-        let errorMsg = document.getElementById('reg-error');
-
-        pass.classList.remove('input-error', 'input-success');
-
-        if(otp === "") {
-            errorMsg.innerText = "⚠️ Please enter the OTP received on SMS.";
-            errorMsg.style.display = "block";
-            return;
-        }
-
-        if(!window.confirmationResult) {
-            errorMsg.innerText = "⚠️ Please send OTP first.";
-            errorMsg.style.display = "block";
-            return;
-        }
-
-        window.confirmationResult.confirm(otp).then((result) => {
-            pass.classList.add('input-success');
-            errorMsg.innerText = "✅ Phone Verified & Account Created!";
-            errorMsg.classList.add('success-msg');
-            errorMsg.style.display = "block";
-            setTimeout(() => { window.location.href = 'home.html'; }, 1000);
-        }).catch((error) => {
-            errorMsg.innerText = "❌ Incorrect OTP.";
-            errorMsg.style.display = "block";
-            document.getElementById('reg-otp').classList.add('input-error');
-        });
+  window.resetPassword = function() {
+      let email = document.getElementById('login-email').value.trim();
+      if (email === "") {
+          showError('login-error', 'Pehle apna email likho, fir Forgot Password dabao.');
+          return;
+      }
+      sendPasswordResetEmail(auth, email)
+        .then(() => showSuccess('login-error', 'Reset link email pe bhej diya.'))
+        .catch((error) => showError('login-error', error.message));
   }
 
   // UI Functions
@@ -391,18 +336,20 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
         }
   }
 
-  window.togglePassword = function(inputId, icon) {
+  window.togglePassword = function(inputId, toggleSpan) {
         let passwordInput = document.getElementById(inputId);
+        let eyeOpen = toggleSpan.querySelector('.eye-open');
+        let eyeClosed = toggleSpan.querySelector('.eye-closed');
         if (passwordInput.type === "password") {
             passwordInput.type = "text";
-            icon.classList.remove("bx-hide");
-            icon.classList.add("bx-show");
-            icon.style.color = "#38bdf8";
+            eyeOpen.style.display = "none";
+            eyeClosed.style.display = "block";
+            toggleSpan.style.color = "#38bdf8";
         } else {
             passwordInput.type = "password";
-            icon.classList.remove("bx-show");
-            icon.classList.add("bx-hide");
-            icon.style.color = "rgba(255, 255, 255, 0.5)";
+            eyeOpen.style.display = "block";
+            eyeClosed.style.display = "none";
+            toggleSpan.style.color = "rgba(255, 255, 255, 0.5)";
         }
   }
 </script>
