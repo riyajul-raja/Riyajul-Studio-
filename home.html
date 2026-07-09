@@ -66,6 +66,31 @@ body::after {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
+/* Loading Screen (shown while checking auth) */
+#auth-check-loader {
+    position: fixed;
+    inset: 0;
+    background: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+#auth-check-loader .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(56, 189, 248, 0.2);
+    border-top-color: #38bdf8;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* App content hidden until auth confirms, prevents flash of content */
+#app-content {
+    display: none;
+}
+
 /* Header */
 .header {
     padding: 25px 20px;
@@ -242,9 +267,17 @@ body::after {
 
 <body>
 
+<!-- Shown while we check if the user is actually logged in -->
+<div id="auth-check-loader">
+    <div class="spinner"></div>
+</div>
+
+<!-- Real page content, hidden until auth is confirmed -->
+<div id="app-content">
+
 <div class="header glass">
     <h1>Riyajul Studio</h1>
-    <p>Most Welcome 👋</p>
+    <p id="welcome-text">Most Welcome 👋</p>
 
     <div class="search">
         <i class='bx bx-search'></i>
@@ -297,12 +330,52 @@ body::after {
         <i class='bx bx-user-circle'></i>
         <span>Profile</span>
     </button>
-    <button onclick="window.location.href='index.html'">
+    <button id="logout-btn">
         <i class='bx bx-log-out'></i>
         <span>Logout</span>
     </button>
 </div>
 
+</div>
+<!-- end app-content -->
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDOg7zZAh3W9P_rcgTAEFBEh1fe5vDb-oo",
+    authDomain: "riyajul-studio.firebaseapp.com",
+    projectId: "riyajul-studio",
+    storageBucket: "riyajul-studio.firebasestorage.app",
+    messagingSenderId: "96233401450",
+    appId: "1:96233401450:web:587ee8bc71585f91102e13",
+    measurementId: "G-5D479VYKBQ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // THE ACTUAL GUARD: runs on every page load
+  onAuthStateChanged(auth, (user) => {
+      if (user) {
+          // Logged in — show the real page
+          let name = user.displayName || user.email || "there";
+          document.getElementById('welcome-text').innerText = "Welcome, " + name + " 👋";
+          document.getElementById('auth-check-loader').style.display = 'none';
+          document.getElementById('app-content').style.display = 'block';
+      } else {
+          // Not logged in — bounce back to login page immediately
+          window.location.href = 'index.html';
+      }
+  });
+
+  document.getElementById('logout-btn').addEventListener('click', function() {
+      signOut(auth).then(() => {
+          window.location.href = 'index.html';
+      });
+  });
+</script>
+
 </body>
 </html>
-
