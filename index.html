@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Riyajul Studio - Premium Welcome</title>
+
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 body { min-height: 100vh; display: flex; justify-content: center; align-items: center; background: #0f172a; color: #fff; overflow: hidden; position: relative; padding: 20px; }
@@ -46,7 +48,7 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 /* DIAMOND LOGO */
 .logo { font-size: 45px; color: #38bdf8; margin-bottom: 10px; display: inline-block; }
 
-/* TITLE SHINE */
+/* TITLE SHINE (Har 5 second me chamkega) */
 .title { 
     font-size: 26px; 
     margin-bottom: 5px; 
@@ -105,9 +107,12 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 .links a:hover { color: #38bdf8; }
 </style>
 </head>
+
 <body>
 
+<!-- Recaptcha Container for Firebase Phone Auth -->
 <div id="recaptcha-container"></div>
+
 <div class="container">
     <i class='bx bxl-sketch logo'></i>
     <h1 class="title">Riyajul Studio</h1>
@@ -122,61 +127,38 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
     <div class="form-area">
         <div class="form-wrapper" id="form-wrapper">
             
+            <!-- LOGIN FORM -->
             <div class="form">
+                <div class="input-group">
+                    <input type="text" id="login-email" placeholder="Email or Mobile">
+                    <i class='bx bx-user'></i>
+                </div>
                 
-                <div id="standard-login">
-                    <div class="input-group">
-                        <input type="text" id="login-email" placeholder="Email or Mobile">
-                        <i class='bx bx-user'></i>
-                    </div>
-
-                    <div class="input-group">
-                        <input type="password" id="login-pass" placeholder="Password">
-                        <i class='bx bx-lock-alt'></i>
-                        <i class='bx bx-hide toggle-password' onclick="window.togglePassword('login-pass', this)"></i>
-                    </div>
-                    
-                    <p class="error-msg" id="login-error">⚠️ Error here</p>
-                    <button class="main-btn" onclick="window.processRealLogin()">Login</button>
-                    
-                    <div class="links"><a href="#" onclick="window.showForgotPass(true)">Forgot Password?</a></div>
-                    
-                    <div class="divider">OR CONTINUE WITH</div>
-                    <div class="social-login">
-                        <button class="social-btn google" onclick="window.realGoogleLogin(this)"><i class='bx bxl-google'></i></button>
-                        <button class="social-btn facebook" onclick="window.realFacebookLogin(this)"><i class='bx bxl-facebook'></i></button>
-                    </div>
+                <!-- OTP Section -->
+                <div class="input-group">
+                    <input type="number" id="login-otp" placeholder="Enter OTP">
+                    <i class='bx bx-message-square-dots'></i>
+                    <button class="otp-btn" id="login-otp-btn" onclick="window.sendRealOTP('login')">Send OTP</button>
                 </div>
+                <div class="timer-text" id="login-timer">Resend in 30s</div>
 
-                <div id="forgot-pass-section" style="display: none;">
-                    <h3 style="font-size: 18px; margin-bottom: 10px; color: #fff;">Reset Password</h3>
-                    <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 20px;">We will send an OTP to your registered mobile number.</p>
-                    
-                    <div class="input-group">
-                        <input type="text" id="reset-phone" placeholder="Mobile Number">
-                        <i class='bx bx-phone'></i>
-                    </div>
-    
-                    <div class="input-group">
-                        <input type="number" id="reset-otp" placeholder="Enter OTP">
-                        <i class='bx bx-message-square-dots'></i>
-                        <button class="otp-btn" id="reset-otp-btn" onclick="window.sendRealOTP('reset')">Send OTP</button>
-                    </div>
-                    <div class="timer-text" id="reset-timer">Resend in 30s</div>
-    
-                    <div class="input-group">
-                        <input type="password" id="new-pass" placeholder="New Password">
-                        <i class='bx bx-lock-alt'></i>
-                        <i class='bx bx-hide toggle-password' onclick="window.togglePassword('new-pass', this)"></i>
-                    </div>
-    
-                    <p class="error-msg" id="reset-error">⚠️ Error here</p>
-                    <button class="main-btn" onclick="window.processResetPassword()">Reset Password</button>
-                    <div class="links" style="margin-top: 15px;"><a href="#" onclick="window.showForgotPass(false)">Back to Login</a></div>
+                <div class="input-group">
+                    <input type="password" id="login-pass" placeholder="Password">
+                    <i class='bx bx-lock-alt'></i>
+                    <i class='bx bx-hide toggle-password' onclick="window.togglePassword('login-pass', this)"></i>
                 </div>
-
+                
+                <p class="error-msg" id="login-error">⚠️ Error here</p>
+                <button class="main-btn" onclick="window.processRealLogin()">Login</button>
+                <div class="links"><a href="#">Forgot Password?</a></div>
+                <div class="divider">OR CONTINUE WITH</div>
+                <div class="social-login">
+                    <button class="social-btn google" onclick="window.realGoogleLogin(this)"><i class='bx bxl-google'></i></button>
+                    <button class="social-btn facebook" onclick="window.realFacebookLogin(this)"><i class='bx bxl-facebook'></i></button>
+                </div>
             </div>
 
+            <!-- REGISTER FORM -->
             <div class="form">
                 <div class="input-group">
                     <input type="text" id="reg-name" placeholder="Full Name">
@@ -187,6 +169,7 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
                     <i class='bx bx-phone'></i>
                 </div>
                 
+                <!-- OTP Section -->
                 <div class="input-group">
                     <input type="number" id="reg-otp" placeholder="Enter OTP">
                     <i class='bx bx-message-square-dots'></i>
@@ -213,6 +196,7 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
     </div>
 </div>
 
+<!-- REAL FIREBASE SCRIPT -->
 <script type="module">
   // Import Phone Auth features
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -261,11 +245,10 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
 
   // --- REAL OTP LOGIC ---
   window.sendRealOTP = function(type) {
-      // Adjusted logic for Reset vs Register
-      let inputId = type === 'reset' ? 'reset-phone' : 'reg-email';
-      let btnId = type === 'reset' ? 'reset-otp-btn' : 'reg-otp-btn';
-      let timerId = type === 'reset' ? 'reset-timer' : 'reg-timer';
-      let errorMsgId = type === 'reset' ? 'reset-error' : 'reg-error';
+      let inputId = type === 'login' ? 'login-email' : 'reg-email';
+      let btnId = type === 'login' ? 'login-otp-btn' : 'reg-otp-btn';
+      let timerId = type === 'login' ? 'login-timer' : 'reg-timer';
+      let errorMsgId = type === 'login' ? 'login-error' : 'reg-error';
       
       let phoneNumber = document.getElementById(inputId).value;
       let errorMsg = document.getElementById(errorMsgId);
@@ -317,40 +300,16 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
           });
   }
 
-  // --- STANDARD LOGIN (WITHOUT OTP) ---
+  // --- REAL LOGIN WITH OTP ---
   window.processRealLogin = function() {
-        let email = document.getElementById('login-email').value;
+        let otp = document.getElementById('login-otp').value;
         let pass = document.getElementById('login-pass');
         let errorMsg = document.getElementById('login-error');
 
         pass.classList.remove('input-error', 'input-success');
 
-        if(email === "" || pass.value === "") {
-            errorMsg.innerText = "⚠️ Please enter Email/Mobile and Password.";
-            errorMsg.style.display = "block";
-            return;
-        }
-
-        // NOTE: Hook up Firebase signInWithEmailAndPassword here if desired.
-        // Simulating success below since OTP was removed:
-        pass.classList.add('input-success');
-        errorMsg.innerText = "✅ Logged In Successfully!";
-        errorMsg.classList.add('success-msg');
-        errorMsg.style.display = "block";
-        
-        setTimeout(() => { window.location.href = 'home.html'; }, 1000);
-  }
-
-  // --- PROCESS PASSWORD RESET ---
-  window.processResetPassword = function() {
-        let otp = document.getElementById('reset-otp').value;
-        let newPass = document.getElementById('new-pass');
-        let errorMsg = document.getElementById('reset-error');
-
-        newPass.classList.remove('input-error', 'input-success');
-
         if(otp === "") {
-            errorMsg.innerText = "⚠️ Please enter the OTP.";
+            errorMsg.innerText = "⚠️ Please enter the OTP received on SMS.";
             errorMsg.style.display = "block";
             return;
         }
@@ -361,17 +320,20 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
             return;
         }
 
+        // Verify Firebase OTP
         window.confirmationResult.confirm(otp).then((result) => {
-            // Note: Add your custom backend logic to update the user's password here.
-            newPass.classList.add('input-success');
-            errorMsg.innerText = "✅ Password Reset Successfully!";
+            // User signed in successfully.
+            pass.classList.add('input-success');
+            errorMsg.innerText = "✅ Phone Verified & Logged In!";
             errorMsg.classList.add('success-msg');
             errorMsg.style.display = "block";
-            setTimeout(() => { window.showForgotPass(false); }, 1500);
+            
+            setTimeout(() => { window.location.href = 'home.html'; }, 1000);
         }).catch((error) => {
+            // Bad OTP
             errorMsg.innerText = "❌ Incorrect OTP.";
             errorMsg.style.display = "block";
-            document.getElementById('reset-otp').classList.add('input-error');
+            document.getElementById('login-otp').classList.add('input-error');
         });
   }
 
@@ -407,4 +369,43 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
         });
   }
 
-  // UI Functi
+  // UI Functions
+  window.switchTab = function(tab) {
+        const wrapper = document.getElementById('form-wrapper');
+        const tabBg = document.getElementById('tab-bg');
+        const btnLogin = document.getElementById('btn-login');
+        const btnRegister = document.getElementById('btn-register');
+        document.getElementById('login-error').style.display = 'none';
+        document.getElementById('reg-error').style.display = 'none';
+        
+        if(tab === 'login') {
+            wrapper.style.transform = 'translateX(0%)';
+            tabBg.style.transform = 'translateX(0)';
+            btnLogin.classList.add('active-text');
+            btnRegister.classList.remove('active-text');
+        } else {
+            wrapper.style.transform = 'translateX(-50%)';
+            tabBg.style.transform = 'translateX(100%)';
+            btnRegister.classList.add('active-text');
+            btnLogin.classList.remove('active-text');
+        }
+  }
+
+  window.togglePassword = function(inputId, icon) {
+        let passwordInput = document.getElementById(inputId);
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("bx-hide");
+            icon.classList.add("bx-show");
+            icon.style.color = "#38bdf8";
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("bx-show");
+            icon.classList.add("bx-hide");
+            icon.style.color = "rgba(255, 255, 255, 0.5)";
+        }
+  }
+</script>
+
+</body>
+</html>
