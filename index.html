@@ -178,10 +178,13 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
   import {
     getAuth,
     signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
     GoogleAuthProvider,
     FacebookAuthProvider,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    fetchSignInMethodsForEmail,
     updateProfile,
     sendPasswordResetEmail
   } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -202,24 +205,47 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
 
+  // Detect if running as an installed/standalone app (Add to Home Screen)
+  function isStandaloneApp() {
+      return window.matchMedia('(display-mode: standalone)').matches
+          || window.navigator.standalone === true;
+  }
+
+  // If we just came back from a redirect-based sign-in, finish it and go home
+  getRedirectResult(auth).then((result) => {
+      if (result) {
+          window.location.href = 'home.html';
+      }
+  }).catch((error) => {
+      alert("Login Error: " + error.message);
+  });
+
   window.realGoogleLogin = function(btn) {
-      signInWithPopup(auth, googleProvider)
-        .then((result) => {
-            window.location.href = 'home.html';
-        })
-        .catch((error) => {
-            alert("Google Login Error: " + error.message);
-        });
+      if (isStandaloneApp()) {
+          signInWithRedirect(auth, googleProvider);
+      } else {
+          signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                window.location.href = 'home.html';
+            })
+            .catch((error) => {
+                alert("Google Login Error: " + error.message);
+            });
+      }
   };
 
   window.realFacebookLogin = function(btn) {
-      signInWithPopup(auth, facebookProvider)
-        .then((result) => {
-            window.location.href = 'home.html';
-        })
-        .catch((error) => {
-            alert("Facebook Login Error: " + error.message);
-        });
+      if (isStandaloneApp()) {
+          signInWithRedirect(auth, facebookProvider);
+      } else {
+          signInWithPopup(auth, facebookProvider)
+            .then((result) => {
+                window.location.href = 'home.html';
+            })
+            .catch((error) => {
+                alert("Facebook Login Error: " + error.message);
+            });
+      }
   };
 
   function showError(elId, msg) {
@@ -303,11 +329,7 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
               btn.innerText = "Create Account";
 
               if (error.code === 'auth/email-already-in-use') {
-                  showError('reg-error', 'Ye email pehle se registered hai...');
-                  setTimeout(() => {
-                      document.getElementById('login-email').value = email;
-                      window.switchTab('login');
-                  }, 1200);
+                  showError('reg-error', 'Ye email pehle se registered hai.');
               } else {
                   showError('reg-error', error.message);
               }
@@ -346,6 +368,9 @@ body::after { width: 300px; height: 300px; background: rgba(6, 182, 212, 0.4); b
             btnLogin.classList.remove('active-text');
         }
   }
+
+  // Default landing tab: Sign Up
+  window.switchTab('register');
 
   window.togglePassword = function(inputId, toggleSpan) {
         let passwordInput = document.getElementById(inputId);
